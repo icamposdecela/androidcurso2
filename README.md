@@ -17,7 +17,8 @@ del curso 2023-2024.
 
 ### UT-02: Arquitectura
 **Contenido**
-- [Presentación de la UT-02](docs/ut02/ut1.pdf)
+- [Presentación de la UT-02](docs/ut02/ut2.pdf)
 
 **Ejercicios**
 - [Ejercicio 1](docs/ut02/ut2-ej1.pdf)
+- [Ejercicio 2](docs/ut02/ut2-ej2.pdf)
