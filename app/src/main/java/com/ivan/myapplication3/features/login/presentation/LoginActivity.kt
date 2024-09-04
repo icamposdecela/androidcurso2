@@ -1,21 +1,41 @@
 package com.ivan.myapplication3.features.login.presentation
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.snackbar.Snackbar
 import com.ivan.myapplication3.R
+import com.ivan.myapplication3.features.login.LoginFactory
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var loginFactory:LoginFactory
+    private lateinit var loginViewModel:LoginViewModel
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        loginFactory=LoginFactory()
+        loginViewModel=loginFactory.provideViewModel()
         setContentView(R.layout.activity_login)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        setupView()
+
+    }
+
+    private fun setupView(){
+        val actionValidate= findViewById<Button>(R.id.action_validate)//val tiene el efecto de una constante, es inmutable
+        // var actionValidate2= findViewById<Button>(R.id.action_validate) //var tiene el efecto de una variable que puede cambiar a lo largo del ciclo de vida de la app
+        actionValidate.setOnClickListener {
+            val userName= findViewById<EditText>(R.id.input_username).text.toString()
+            val userPassword= findViewById<EditText>(R.id.input_password).text.toString()
+            val isValid = loginViewModel.validateClicked(userName,userPassword)
+            if(isValid) {
+                Snackbar.make(findViewById<View>(R.id.main), R.string.message_login_ok,Snackbar.LENGTH_SHORT).show()
+            }else{
+                Snackbar.make(findViewById<View>(R.id.main), R.string.message_login_fails,Snackbar.LENGTH_SHORT).show()
+            }
         }
     }
 }
