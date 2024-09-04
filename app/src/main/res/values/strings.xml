@@ -8,6 +8,7 @@
     <string name="action_validate">Validar</string>
     <string name="message_login_ok">Todo correcto</string>
     <string name="message_login_fails">Ha fallado algo</string>
+    <string name="label_remember_user">Recordar usuario</string>
 
 
 

@@ -8,7 +8,8 @@ class LoginMockRemoteDataSource {
         val resultado:Boolean=if((this.username ==userName) && (this.userpassword==userPassword)) true else false
 
         return resultado
-          //  return ((this.username ==userName) && (this.userpassword==userPassword))
+        //  esta opción también es válida
+        //  return ((this.username ==userName) && (this.userpassword==userPassword))
 
     }
 

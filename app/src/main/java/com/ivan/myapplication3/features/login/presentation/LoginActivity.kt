@@ -3,6 +3,7 @@ package com.ivan.myapplication3.features.login.presentation
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
@@ -17,7 +18,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        loginFactory=LoginFactory()
+        loginFactory=LoginFactory(this)
         loginViewModel=loginFactory.provideViewModel()
         setContentView(R.layout.activity_login)
         setupView()
@@ -30,7 +31,8 @@ class LoginActivity : AppCompatActivity() {
         actionValidate.setOnClickListener {
             val userName= findViewById<EditText>(R.id.input_username).text.toString()
             val userPassword= findViewById<EditText>(R.id.input_password).text.toString()
-            val isValid = loginViewModel.validateClicked(userName,userPassword)
+            val rememberIsChecked = findViewById<CheckBox>(R.id.checkremember).isChecked
+            val isValid = loginViewModel.validateClicked(userName,userPassword, rememberIsChecked)
             if(isValid) {
                 Snackbar.make(findViewById<View>(R.id.main), R.string.message_login_ok,Snackbar.LENGTH_SHORT).show()
             }else{
