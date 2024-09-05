@@ -10,10 +10,15 @@ class LoginDataRepository(
 ):LoginRepository {
 
     override fun isValid(userName: String, userPassword: String): Boolean {
-        return remoteDataSource.validate(userName,userPassword)
+        return remoteDataSource.validate(userName, userPassword)
     }
 
     override fun saveUsername(userName: String) {
-        return localDataSource.saveUsername(userName)
+        localDataSource.saveUsername(userName)
     }
+
+    override fun deleteUserName(){
+        localDataSource.deleteUsername()
+    }
+
 }
