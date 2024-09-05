@@ -4,4 +4,5 @@ interface LoginRepository  {
     fun isValid(userName:String,userPassword:String):Boolean
     fun saveUsername(userName: String)
     fun deleteUserName()
+    fun getUserName():String?
 }

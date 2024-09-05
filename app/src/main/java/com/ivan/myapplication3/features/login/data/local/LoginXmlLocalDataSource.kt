@@ -16,4 +16,7 @@ class LoginXmlLocalDataSource (private val context: Context) {
         editor.remove("key_username")
         editor.commit()
     }
+    fun getUsername():String?{
+        return sharedPref.getString("key_username", null)
+    }
 }

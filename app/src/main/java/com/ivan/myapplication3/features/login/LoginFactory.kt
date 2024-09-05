@@ -5,6 +5,7 @@ import com.ivan.myapplication3.features.login.data.LoginDataRepository
 import com.ivan.myapplication3.features.login.data.local.LoginXmlLocalDataSource
 import com.ivan.myapplication3.features.login.data.remote.LoginMockRemoteDataSource
 import com.ivan.myapplication3.features.login.domain.DeleteUserNameUseCase
+import com.ivan.myapplication3.features.login.domain.GetUserNameUseCase
 import com.ivan.myapplication3.features.login.domain.LoginRepository
 import com.ivan.myapplication3.features.login.domain.SaveUserNameUseCase
 import com.ivan.myapplication3.features.login.domain.SignInUseCase
@@ -21,9 +22,10 @@ class LoginFactory(private val context: Context) {
     private val signInUseCase: SignInUseCase = provideSignInUseCase()
     private val deleteUserNameUseCase: DeleteUserNameUseCase = provideDeleteUserNameUseCase()
     private val saveUserNameUseCase: SaveUserNameUseCase = provideSaveUserNameUseCase()
+    private val getUserNameUseCase: GetUserNameUseCase = provideGetUserNameUseCase()
 
     fun provideViewModel(): LoginViewModel {
-        return LoginViewModel(signInUseCase, saveUserNameUseCase, deleteUserNameUseCase)
+        return LoginViewModel(signInUseCase, saveUserNameUseCase, deleteUserNameUseCase, getUserNameUseCase)
     }
 
     private fun provideLoginMockDataSource(): LoginMockRemoteDataSource {
@@ -48,5 +50,9 @@ class LoginFactory(private val context: Context) {
 
     private fun provideDeleteUserNameUseCase(): DeleteUserNameUseCase {
         return DeleteUserNameUseCase(loginRepository)
+    }
+
+    private fun provideGetUserNameUseCase(): GetUserNameUseCase {
+        return GetUserNameUseCase(loginRepository)
     }
 }
